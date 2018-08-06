@@ -5,13 +5,13 @@
  */
 package java2project;
 
-import java2project.Models.Employee;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.Scanner;
+import java2project.Models.Employee;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -108,27 +108,39 @@ public class FXMLDocumentController implements Initializable
    @FXML
    private void addNewEmployeeButtonDidTap (ActionEvent event) throws IOException
    {
-      Parent tableViewParent = FXMLLoader.load(getClass().getResource("AddNewEmployee.fxml"));
-      Scene tableViewScene = new Scene(tableViewParent);
+      Parent viewParent = FXMLLoader.load(getClass().getResource("AddNewEmployee.fxml"));
+      Scene scene = new Scene(viewParent);
 
       // This line gets the stage information
       Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
-      window.setScene(tableViewScene);
+      window.setScene(scene);
       window.show();
    }
 
    @FXML
    private void viewDetailButtonDidTap (ActionEvent event) throws IOException
    {
+      //get the fxml file
+      String loc = "EmployeeDetail.fxml";
 
-      Parent tableViewParent = FXMLLoader.load(getClass().getResource("AddNewEmployee.fxml"));
-      Scene tableViewScene = new Scene(tableViewParent);
+      FXMLLoader fxmlLoader = new FXMLLoader(
+              getClass().getResource(loc));
+      Parent root = (Parent) fxmlLoader.load();
 
-      // This line gets the stage information
-      Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+      Scene scene = new Scene(root);
 
-      window.setScene(tableViewScene);
-      window.show();
+      Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+      stage.setTitle("Employee Detail");
+      stage.setScene(scene);
+      stage.show();
+
+      //assign controller for fxml
+      EmployeeDetailController controller = fxmlLoader.getController();
+
+      //get selected employee from tableView
+      Employee selectedEmployee = employeeTable.getSelectionModel().getSelectedItem();
+      controller.setEmployee(selectedEmployee);
    }
 }
