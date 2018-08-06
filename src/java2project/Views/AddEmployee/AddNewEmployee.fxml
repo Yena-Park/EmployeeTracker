@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -9,7 +10,7 @@
 
 <AnchorPane id="AnchorPane" prefHeight="800.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="java2project.Views.AddEmployee.AddNewEmployeeController">
    <children>
-      <Button mnemonicParsing="false" text="BACK" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="70.0">
+      <Button mnemonicParsing="false" onAction="#backButtonDidTap" text="BACK" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="70.0">
          <font>
             <Font size="20.0" />
          </font>
@@ -19,7 +20,7 @@
             <Font size="30.0" />
          </font>
       </Label>
-      <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" text="SAVE" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="70.0">
+      <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#saveButtonDidTap" text="SAVE" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="70.0">
          <font>
             <Font size="20.0" />
          </font>
@@ -31,62 +32,62 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <TextField layoutX="180.0" layoutY="20.0" />
+            <TextField fx:id="firstNameTextField" layoutX="180.0" layoutY="20.0" />
             <Label layoutX="400.0" layoutY="20.0" text="Last Name :">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <TextField layoutX="520.0" layoutY="20.0" />
+            <TextField fx:id="lastNameTextField" layoutX="520.0" layoutY="20.0" />
             <Label layoutX="20.0" layoutY="50.0" text="Employee Number :">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <TextField layoutX="200.0" layoutY="50.0" />
+            <TextField fx:id="employeeNumberTextfield" layoutX="200.0" layoutY="50.0" />
             <Label layoutX="20.0" layoutY="80.0" text="Birth Date :">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <TextField layoutX="180.0" layoutY="80.0" />
+            <TextField fx:id="birthDateTextField" layoutX="180.0" layoutY="80.0" />
             <Label layoutX="20.0" layoutY="110.0" text="Street :">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <TextField layoutX="180.0" layoutY="110.0" />
+            <TextField fx:id="streetTextField" layoutX="180.0" layoutY="110.0" />
             <Label layoutX="400.0" layoutY="110.0" text="City :">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <TextField layoutX="450.0" layoutY="110.0" />
-            <TextField layoutX="800.0" layoutY="110.0" />
+            <TextField fx:id="cityTextField" layoutX="450.0" layoutY="110.0" />
+            <TextField fx:id="provinceTextField" layoutX="800.0" layoutY="110.0" />
             <Label layoutX="700.0" layoutY="110.0" text="Province :">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <TextField layoutX="180.0" layoutY="140.0" />
+            <TextField fx:id="phoneNumberTextField" layoutX="180.0" layoutY="140.0" />
             <Label layoutX="20.0" layoutY="140.0" text="Phone Number :">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <TextField layoutX="180.0" layoutY="170.0" />
+            <TextField fx:id="emailTextField" layoutX="180.0" layoutY="170.0" />
             <Label layoutX="20.0" layoutY="170.0" text="Email :">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <TextField layoutX="200.0" layoutY="200.0" />
+            <TextField fx:id="EmergencyContactTextField" layoutX="200.0" layoutY="200.0" />
             <Label layoutX="20.0" layoutY="200.0" text="Emergency Contact :">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <TextField layoutX="180.0" layoutY="230.0" />
+            <TextField fx:id="sinNumberTextField" layoutX="180.0" layoutY="230.0" />
             <Label layoutX="20.0" layoutY="230.0" text="SIN Number :">
                <font>
                   <Font size="18.0" />
@@ -97,25 +98,24 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <TextField layoutX="180.0" layoutY="260.0" />
             <Label layoutX="20.0" layoutY="290.0" text="Pay Rate :">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <TextField layoutX="180.0" layoutY="290.0" />
+            <TextField fx:id="payRateTextField" layoutX="180.0" layoutY="290.0" />
             <Label layoutX="20.0" layoutY="320.0" text="Department :">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <TextField layoutX="180.0" layoutY="320.0" />
+            <ComboBox fx:id="departmentComboBox" editable="true" layoutX="180.0" layoutY="320.0" onAction="#departmentComboBoxValueChanged" prefWidth="150.0" promptText="IT" />
             <Label layoutX="20.0" layoutY="350.0" text="Hired Date :">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <TextField layoutX="180.0" layoutY="350.0" />
+            <TextField fx:id="hiredDateTextField" layoutX="180.0" layoutY="350.0" />
             <Label layoutX="20.0" layoutY="380.0" text="Terminated Date :">
                <font>
                   <Font size="18.0" />
@@ -126,8 +126,9 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <TextField layoutX="180.0" layoutY="380.0" />
-            <TextField layoutX="180.0" layoutY="410.0" />
+            <TextField fx:id="terminatedDateTextField" layoutX="180.0" layoutY="380.0" />
+            <TextField fx:id="availabilityTextField" layoutX="180.0" layoutY="410.0" />
+            <ComboBox fx:id="positionComboBox" editable="true" layoutX="180.0" layoutY="260.0" onAction="#positionComboBoxValueChanged" prefWidth="150.0" promptText="Staff" />
          </children>
       </Pane>
    </children>
