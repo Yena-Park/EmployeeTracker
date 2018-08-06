@@ -17,6 +17,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 /**
@@ -26,12 +27,49 @@ import javafx.stage.Stage;
  */
 public class EmployeeDetailController implements Initializable
 {
+
+   // UI
    @FXML
    private Button backButton;
 
+   @FXML
+   private Label titleLabel;
+   @FXML
+   private Label employeeNumberLabel;
+   @FXML
+   private Label nameLabel;
+   @FXML
+   private Label birthDateLabel;
+   @FXML
+   private Label addressLabel;
+   @FXML
+   private Label phoneNumberLabel;
+   @FXML
+   private Label emergencyContactLabel;
+   @FXML
+   private Label sinNumberLabel;
+   @FXML
+   private Label positionLabel;
+   @FXML
+   private Label payRateLabel;
+   @FXML
+   private Label departmentLabel;
+   @FXML
+   private Label hiredDateLabel;
+   @FXML
+   private Label terminatedDateLabel;
+   @FXML
+   private Label availabilityLabel;
+   @FXML
+   private Label bankNameLabel;
+   @FXML
+   private Label bankTransitNumberLabel;
+   @FXML
+   private Label bankInstitutionNumberLabel;
+   @FXML
+   private Label bankAccountNumberLabel;
 
-
-
+   //Properties
    private Employee employee;
 
    /**
@@ -40,14 +78,16 @@ public class EmployeeDetailController implements Initializable
    @Override
    public void initialize (URL url, ResourceBundle rb)
    {
-      // TODO
+      if (employee != null) {
+         setupUI();
+      }
    }
 
-
-   @FXML
-   void loadDoneOp (ActionEvent event)
+   public void initData (Employee employee)
    {
-      System.out.println("@@@");
+      setEmployee(employee);
+
+      setupUI();
    }
 
 
@@ -64,12 +104,45 @@ public class EmployeeDetailController implements Initializable
    @FXML
    private void backButtonDidTap (ActionEvent event) throws IOException
    {
-      String loc = "Views/EmployeeList/EmployeeList.fxml";
-      Parent root = FXMLLoader.load(getClass().getResource(loc));
+      String loc = "java2project/Views/EmployeeList/FXMLDocument.fxml";
+
+      //Creating new Loader to get Controller first
+      FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource(loc));
+
+      // get the root
+      Parent root = fxmlLoader.load();
 
       Scene scene = new Scene(root);
       Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+      stage.setTitle("Employee List");
       stage.setScene(scene);
       stage.show();
+   }
+
+   private void setupUI ()
+   {
+      String fullName = employee.getLastName() + " " + employee.getFirstName();
+      // set title
+      titleLabel.setText(fullName + "'s Profile");
+
+      // setup detail infomation
+      employeeNumberLabel.setText("" + employee.getEmployeeNumber());
+      nameLabel.setText(fullName);
+      birthDateLabel.setText(employee.getBirthday());
+      String address = employee.getStreetAddress() + " " + employee.getCity() + " " + employee.getProvince();
+      addressLabel.setText(address);
+      phoneNumberLabel.setText(employee.getPhoneNumber());
+      emergencyContactLabel.setText(employee.getEmergencyContact());
+      sinNumberLabel.setText(employee.getSinNumber());
+      positionLabel.setText(employee.getPosition());
+      payRateLabel.setText("" + employee.getPayRate());
+      departmentLabel.setText(employee.getDepartment());
+      hiredDateLabel.setText(employee.getDateHired());
+      terminatedDateLabel.setText(employee.getDateTerminated());
+      availabilityLabel.setText(employee.getAvailability());
+      bankNameLabel.setText(employee.getBankName());
+      bankTransitNumberLabel.setText("" + employee.getBankTransitNumber());
+      bankInstitutionNumberLabel.setText("" + employee.getBankInstitutionNumber());
+      bankAccountNumberLabel.setText("" + employee.getBankAccountNumber());
    }
 }

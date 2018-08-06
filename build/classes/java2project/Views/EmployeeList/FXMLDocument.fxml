@@ -7,24 +7,24 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="800.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="java2project.FXMLDocumentController">
-   <children>
-      <TableView fx:id="employeeTable" layoutX="24.0" layoutY="76.0" prefHeight="324.0" prefWidth="1049.0">
-        <columns>
-          <TableColumn fx:id="employeeNumberColumn" prefWidth="78.42855834960938" text="Employee#" />
-          <TableColumn fx:id="lastNameColumn" prefWidth="105.14285278320312" text="Last Name" />
-            <TableColumn fx:id="firstNameColumn" prefWidth="102.57147216796875" text="First Name" />
-            <TableColumn fx:id="departmentColumn" prefWidth="77.857177734375" text="Department" />
-            <TableColumn fx:id="emailColumn" prefWidth="265.0" text="email" />
-            <TableColumn fx:id="payRateColumn" prefWidth="75.0" text="Pay Rate" />
-        </columns>
-      </TableView>
-      <Button fx:id="viewDetailButton" layoutX="67.0" layoutY="441.0" mnemonicParsing="false" onAction="#viewDetailButtonDidTap" text="View Details" />
-      <Button fx:id="addNewEmployeeButton" layoutX="184.0" layoutY="441.0" mnemonicParsing="false" onAction="#addNewEmployeeButtonDidTap" text="Add New Employee" />
-      <Label layoutX="28.0" layoutY="24.0" prefHeight="37.0" prefWidth="249.0" text="Employee List">
-         <font>
-            <Font size="30.0" />
-         </font>
-      </Label>
-   </children>
+<AnchorPane id="AnchorPane" prefHeight="800.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="java2project.Views.EmployeeList.FXMLDocumentController">
+    <children>
+        <TableView fx:id="employeeTable" layoutX="24.0" layoutY="76.0" prefHeight="324.0" prefWidth="1049.0">
+            <columns>
+                <TableColumn fx:id="employeeNumberColumn" prefWidth="119.47431945800781" text="Employee#" />
+                <TableColumn fx:id="lastNameColumn" prefWidth="110.89126586914062" text="Last Name" />
+                <TableColumn fx:id="firstNameColumn" prefWidth="106.6087646484375" text="First Name" />
+                <TableColumn fx:id="departmentColumn" prefWidth="210.83078002929688" text="Department" />
+                <TableColumn fx:id="emailColumn" prefWidth="353.5739440917969" text="email" />
+                <TableColumn fx:id="payRateColumn" prefWidth="148.06939697265625" text="Pay Rate" />
+            </columns>
+        </TableView>
+        <Button fx:id="viewDetailButton" layoutX="67.0" layoutY="441.0" mnemonicParsing="false" onAction="#viewDetailButtonDidTap" text="View Details" />
+        <Button fx:id="addNewEmployeeButton" layoutX="184.0" layoutY="441.0" mnemonicParsing="false" onAction="#addNewEmployeeButtonDidTap" text="Add New Employee" />
+        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="28.0" layoutY="24.0" prefHeight="37.0" prefWidth="1042.0" text="Employee List" textAlignment="CENTER">
+            <font>
+                <Font size="30.0" />
+            </font>
+        </Label>
+    </children>
 </AnchorPane>

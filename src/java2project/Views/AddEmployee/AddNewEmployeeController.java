@@ -27,4 +27,12 @@ public class AddNewEmployeeController implements Initializable
       // TODO
    }
 
+   //TODO: AddButtonDidTap method
+
+   //TODO: CancelButtonDidTap method
+
+   //TODO: input field
+
+   //TODO: Layout
+
 }

@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.Scanner;
 import java2project.Models.Employee;
+import java2project.Views.AddEmployee.AddNewEmployeeController;
 import java2project.Views.EmployeeDetail.EmployeeDetailController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -69,13 +70,13 @@ public class FXMLDocumentController implements Initializable
    public void initialize (URL url, ResourceBundle rb)
    {
       try {
-         fileread();
+         readFile();
       }
       catch (Exception ex) {
       }
    }
 
-   public void fileread () throws Exception
+   public void readFile () throws Exception
    {
       File file = new File("employees.txt");
       Scanner line = new Scanner(file);
@@ -109,40 +110,57 @@ public class FXMLDocumentController implements Initializable
    @FXML
    private void addNewEmployeeButtonDidTap (ActionEvent event) throws IOException
    {
-      String loc = "Views/AddEmployee/AddNewEmployee.fxml";
-      Parent viewParent = FXMLLoader.load(getClass().getResource(loc));
-      Scene scene = new Scene(viewParent);
+
+      String loc = "java2project/Views/AddEmployee/AddNewEmployee.fxml";
+
+      //Creating new Loader to get Controller first
+      FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource(loc));
+
+      // get the root
+      Parent root = fxmlLoader.load();
+
+      Scene scene = new Scene(root);
 
       // This line gets the stage information
-      Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+      Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+      stage.setScene(scene);
 
-      window.setScene(scene);
-      window.show();
+      //assign stage to the controller
+      AddNewEmployeeController controller = fxmlLoader.getController(); // first get controller
+
+      // show modal window
+      stage.show();
    }
 
    @FXML
    private void viewDetailButtonDidTap (ActionEvent event) throws IOException
    {
-      //get the fxml file
-      String loc = "Views/EmployeeDetail/EmployeeDetail.fxml";
 
-      FXMLLoader fxmlLoader = new FXMLLoader(
-              getClass().getResource(loc));
-      Parent root = (Parent) fxmlLoader.load();
+      String loc = "java2project/Views/EmployeeDetail/EmployeeDetail.fxml";
+
+      //Creating new Loader to get Controller first
+      FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource(loc));
+
+      // get the root
+      Parent root = fxmlLoader.load();
 
       Scene scene = new Scene(root);
 
+      //next page
       Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
       stage.setTitle("Employee Detail");
       stage.setScene(scene);
       stage.show();
 
-      //assign controller for fxml
-      EmployeeDetailController controller = fxmlLoader.getController();
 
-      //get selected employee from tableView
-      Employee selectedEmployee = employeeTable.getSelectionModel().getSelectedItem();
-      controller.setEmployee(selectedEmployee);
+      //assign controller for fxml
+      EmployeeDetailController controller = fxmlLoader.<EmployeeDetailController>getController();
+      System.out.println(controller);
+
+      //set selected employee from tableView
+      Employee selectedEmployee = employeeTable.focusModelProperty().getValue().getFocusedItem();
+//      Employee selectedEmployee = employeeTable.getSelectionModel().getSelectedItem();
+      System.out.println(selectedEmployee);
+      controller.initData(selectedEmployee);
    }
 }

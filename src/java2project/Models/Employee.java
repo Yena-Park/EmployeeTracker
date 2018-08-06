@@ -108,7 +108,6 @@ public class Employee extends FXMLDocumentController
 //      bankTransitNumber = ip.nextInt();
 //      bankInstitutionNumber = ip.nextInt();
 //      bankAccountNumber = ip.nextInt();
-
       ip.close();
    }
 
