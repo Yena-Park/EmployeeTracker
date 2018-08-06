@@ -4,28 +4,131 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="800.0" prefWidth="1100.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="java2project.Views.AddEmployee.AddNewEmployeeController">
-    <children>
-        <VBox prefHeight="200.0" prefWidth="274.0" spacing="10.0">
-            <children>
-                <HBox prefHeight="32.0" prefWidth="228.0" spacing="10.0">
-                    <children>
-                        <Label text="Employee #" />
-                        <TextField promptText="Employee #" />
-                    </children>
-                </HBox>
-                <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
-                    <children>
-                        <Label text="Last Name" />
-                        <TextField promptText="Last Name" />
-                    </children>
-                </HBox>
-            </children>
-        </VBox>
-        <Button layoutX="458.0" layoutY="632.0" mnemonicParsing="false" text="Add" />
-    </children>
+<AnchorPane id="AnchorPane" prefHeight="800.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="java2project.Views.AddEmployee.AddNewEmployeeController">
+   <children>
+      <Button mnemonicParsing="false" text="BACK" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="70.0">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Button>
+      <Label fx:id="titleLabel" alignment="CENTER" text="Add New Employee" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="40.0">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Label>
+      <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" text="SAVE" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="70.0">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Button>
+      <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="120.0">
+         <children>
+            <Label layoutX="20.0" layoutY="20.0" text="First Name :">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <TextField layoutX="180.0" layoutY="20.0" />
+            <Label layoutX="400.0" layoutY="20.0" text="Last Name :">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <TextField layoutX="520.0" layoutY="20.0" />
+            <Label layoutX="20.0" layoutY="50.0" text="Employee Number :">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <TextField layoutX="200.0" layoutY="50.0" />
+            <Label layoutX="20.0" layoutY="80.0" text="Birth Date :">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <TextField layoutX="180.0" layoutY="80.0" />
+            <Label layoutX="20.0" layoutY="110.0" text="Street :">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <TextField layoutX="180.0" layoutY="110.0" />
+            <Label layoutX="400.0" layoutY="110.0" text="City :">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <TextField layoutX="450.0" layoutY="110.0" />
+            <TextField layoutX="800.0" layoutY="110.0" />
+            <Label layoutX="700.0" layoutY="110.0" text="Province :">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <TextField layoutX="180.0" layoutY="140.0" />
+            <Label layoutX="20.0" layoutY="140.0" text="Phone Number :">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <TextField layoutX="180.0" layoutY="170.0" />
+            <Label layoutX="20.0" layoutY="170.0" text="Email :">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <TextField layoutX="200.0" layoutY="200.0" />
+            <Label layoutX="20.0" layoutY="200.0" text="Emergency Contact :">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <TextField layoutX="180.0" layoutY="230.0" />
+            <Label layoutX="20.0" layoutY="230.0" text="SIN Number :">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="20.0" layoutY="260.0" text="Position :">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <TextField layoutX="180.0" layoutY="260.0" />
+            <Label layoutX="20.0" layoutY="290.0" text="Pay Rate :">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <TextField layoutX="180.0" layoutY="290.0" />
+            <Label layoutX="20.0" layoutY="320.0" text="Department :">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <TextField layoutX="180.0" layoutY="320.0" />
+            <Label layoutX="20.0" layoutY="350.0" text="Hired Date :">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <TextField layoutX="180.0" layoutY="350.0" />
+            <Label layoutX="20.0" layoutY="380.0" text="Terminated Date :">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="20.0" layoutY="410.0" text="Availability :">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <TextField layoutX="180.0" layoutY="380.0" />
+            <TextField layoutX="180.0" layoutY="410.0" />
+         </children>
+      </Pane>
+   </children>
 </AnchorPane>

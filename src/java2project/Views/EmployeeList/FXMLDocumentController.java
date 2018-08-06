@@ -155,12 +155,10 @@ public class FXMLDocumentController implements Initializable
 
       //assign controller for fxml
       EmployeeDetailController controller = fxmlLoader.<EmployeeDetailController>getController();
-      System.out.println(controller);
 
       //set selected employee from tableView
       Employee selectedEmployee = employeeTable.focusModelProperty().getValue().getFocusedItem();
 //      Employee selectedEmployee = employeeTable.getSelectionModel().getSelectedItem();
-      System.out.println(selectedEmployee);
       controller.initData(selectedEmployee);
    }
 }
