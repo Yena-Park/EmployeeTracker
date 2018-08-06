@@ -9,7 +9,7 @@
 
 <AnchorPane id="AnchorPane" prefHeight="800.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="java2project.Views.EmployeeList.FXMLDocumentController">
     <children>
-        <TableView fx:id="employeeTable" layoutX="24.0" layoutY="76.0" prefHeight="324.0" prefWidth="1049.0">
+        <TableView fx:id="employeeTable" layoutX="23.0" layoutY="111.0" prefHeight="633.0" prefWidth="1049.0">
             <columns>
                 <TableColumn fx:id="employeeNumberColumn" prefWidth="119.47431945800781" text="Employee#" />
                 <TableColumn fx:id="lastNameColumn" prefWidth="110.89126586914062" text="Last Name" />
@@ -19,8 +19,8 @@
                 <TableColumn fx:id="payRateColumn" prefWidth="148.06939697265625" text="Pay Rate" />
             </columns>
         </TableView>
-        <Button fx:id="viewDetailButton" layoutX="67.0" layoutY="441.0" mnemonicParsing="false" onAction="#viewDetailButtonDidTap" text="View Details" />
-        <Button fx:id="addNewEmployeeButton" layoutX="184.0" layoutY="441.0" mnemonicParsing="false" onAction="#addNewEmployeeButtonDidTap" text="Add New Employee" />
+        <Button fx:id="viewDetailButton" layoutX="822.0" layoutY="70.0" mnemonicParsing="false" onAction="#viewDetailButtonDidTap" text="View Details" />
+        <Button fx:id="addNewEmployeeButton" layoutX="930.0" layoutY="70.0" mnemonicParsing="false" onAction="#addNewEmployeeButtonDidTap" text="Add New Employee" />
         <Label alignment="CENTER" contentDisplay="CENTER" layoutX="28.0" layoutY="24.0" prefHeight="37.0" prefWidth="1042.0" text="Employee List" textAlignment="CENTER">
             <font>
                 <Font size="30.0" />
