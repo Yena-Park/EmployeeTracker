@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package java2project;
+package java2project.Views.EmployeeDetail;
 
 import java.io.IOException;
 import java.net.URL;
@@ -64,7 +64,8 @@ public class EmployeeDetailController implements Initializable
    @FXML
    private void backButtonDidTap (ActionEvent event) throws IOException
    {
-      Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
+      String loc = "Views/EmployeeList/EmployeeList.fxml";
+      Parent root = FXMLLoader.load(getClass().getResource(loc));
 
       Scene scene = new Scene(root);
       Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();

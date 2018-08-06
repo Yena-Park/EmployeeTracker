@@ -1,6 +1,6 @@
 package java2project.Models;
 import java.util.Scanner;
-import java2project.FXMLDocumentController;
+import java2project.Views.EmployeeList.FXMLDocumentController;
 /**
  * @author MJ @ Sheridan College
  */

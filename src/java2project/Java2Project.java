@@ -21,7 +21,7 @@ public class Java2Project extends Application
    @Override
    public void start (Stage stage) throws Exception
    {
-      Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
+      Parent root = FXMLLoader.load(getClass().getResource("Views/EmployeeList/FXMLDocument.fxml"));
 
       Scene scene = new Scene(root);
       stage.setTitle("Employee List");

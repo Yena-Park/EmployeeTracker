@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package java2project;
+package java2project.Views.EmployeeList;
 
 import java.io.File;
 import java.io.IOException;
@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.Scanner;
 import java2project.Models.Employee;
+import java2project.Views.EmployeeDetail.EmployeeDetailController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -108,7 +109,8 @@ public class FXMLDocumentController implements Initializable
    @FXML
    private void addNewEmployeeButtonDidTap (ActionEvent event) throws IOException
    {
-      Parent viewParent = FXMLLoader.load(getClass().getResource("AddNewEmployee.fxml"));
+      String loc = "Views/AddEmployee/AddNewEmployee.fxml";
+      Parent viewParent = FXMLLoader.load(getClass().getResource(loc));
       Scene scene = new Scene(viewParent);
 
       // This line gets the stage information
@@ -122,7 +124,7 @@ public class FXMLDocumentController implements Initializable
    private void viewDetailButtonDidTap (ActionEvent event) throws IOException
    {
       //get the fxml file
-      String loc = "EmployeeDetail.fxml";
+      String loc = "Views/EmployeeDetail/EmployeeDetail.fxml";
 
       FXMLLoader fxmlLoader = new FXMLLoader(
               getClass().getResource(loc));
