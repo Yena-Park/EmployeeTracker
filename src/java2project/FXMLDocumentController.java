@@ -5,6 +5,7 @@
  */
 package java2project;
 
+import java2project.Models.Employee;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -58,6 +59,8 @@ public class FXMLDocumentController implements Initializable
    private TableColumn<Employee, Double> payRateColumn;
    @FXML
    private Button addNewEmployeeButton;
+   @FXML
+   private Button viewDetailButton;
 
 
 
@@ -103,8 +106,22 @@ public class FXMLDocumentController implements Initializable
 
    // This method is called, it will change the scene to a AddNewEmployeePage
    @FXML
-   private void addNewEmployeePush (ActionEvent event) throws IOException
+   private void addNewEmployeeButtonDidTap (ActionEvent event) throws IOException
    {
+      Parent tableViewParent = FXMLLoader.load(getClass().getResource("AddNewEmployee.fxml"));
+      Scene tableViewScene = new Scene(tableViewParent);
+
+      // This line gets the stage information
+      Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+      window.setScene(tableViewScene);
+      window.show();
+   }
+
+   @FXML
+   private void viewDetailButtonDidTap (ActionEvent event) throws IOException
+   {
+
       Parent tableViewParent = FXMLLoader.load(getClass().getResource("AddNewEmployee.fxml"));
       Scene tableViewScene = new Scene(tableViewParent);
 
