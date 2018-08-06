@@ -39,6 +39,8 @@ public class EmployeeDetailController implements Initializable
    @FXML
    private Label nameLabel;
    @FXML
+   private Label emailLabel;
+   @FXML
    private Label birthDateLabel;
    @FXML
    private Label addressLabel;
@@ -131,6 +133,7 @@ public class EmployeeDetailController implements Initializable
       birthDateLabel.setText(employee.getBirthday());
       String address = employee.getStreetAddress() + " " + employee.getCity() + " " + employee.getProvince();
       addressLabel.setText(address);
+      emailLabel.setText(employee.getEmailAddress());
       phoneNumberLabel.setText(employee.getPhoneNumber());
       emergencyContactLabel.setText(employee.getEmergencyContact());
       sinNumberLabel.setText(employee.getSinNumber());
