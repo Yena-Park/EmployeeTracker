@@ -80,7 +80,7 @@ public class FXMLDocumentController implements Initializable
    {
       File file = new File("employees.txt");
       Scanner line = new Scanner(file);
-      line.useDelimiter("\r\n");
+      line.useDelimiter("\n");
 
       while (line.hasNext()) {
          String sentence = line.next();

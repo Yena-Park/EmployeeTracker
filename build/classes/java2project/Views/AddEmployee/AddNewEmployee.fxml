@@ -44,7 +44,7 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <TextField fx:id="employeeNumberTextfield" layoutX="200.0" layoutY="50.0" />
+            <TextField fx:id="employeeNumberTextField" layoutX="200.0" layoutY="50.0" />
             <Label layoutX="20.0" layoutY="80.0" text="Birth Date :">
                <font>
                   <Font size="18.0" />
@@ -81,7 +81,7 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <TextField fx:id="EmergencyContactTextField" layoutX="200.0" layoutY="200.0" />
+            <TextField fx:id="emergencyContactTextField" layoutX="200.0" layoutY="200.0" />
             <Label layoutX="20.0" layoutY="200.0" text="Emergency Contact :">
                <font>
                   <Font size="18.0" />
@@ -109,7 +109,6 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <ComboBox fx:id="departmentComboBox" editable="true" layoutX="180.0" layoutY="320.0" onAction="#departmentComboBoxValueChanged" prefWidth="150.0" promptText="IT" />
             <Label layoutX="20.0" layoutY="350.0" text="Hired Date :">
                <font>
                   <Font size="18.0" />
@@ -128,7 +127,8 @@
             </Label>
             <TextField fx:id="terminatedDateTextField" layoutX="180.0" layoutY="380.0" />
             <TextField fx:id="availabilityTextField" layoutX="180.0" layoutY="410.0" />
-            <ComboBox fx:id="positionComboBox" editable="true" layoutX="180.0" layoutY="260.0" onAction="#positionComboBoxValueChanged" prefWidth="150.0" promptText="Staff" />
+            <ComboBox fx:id="positionComboBox" editable="true" layoutX="180.0" layoutY="260.0" prefWidth="150.0" promptText="Staff" />
+            <ComboBox fx:id="departmentComboBox" editable="true" layoutX="180.0" layoutY="320.0" prefWidth="150.0" promptText="IT" />
          </children>
       </Pane>
    </children>
