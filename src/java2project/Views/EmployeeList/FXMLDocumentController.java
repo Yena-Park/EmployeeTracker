@@ -23,6 +23,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
@@ -160,5 +161,33 @@ public class FXMLDocumentController implements Initializable
       Employee selectedEmployee = employeeTable.focusModelProperty().getValue().getFocusedItem();
 //      Employee selectedEmployee = employeeTable.getSelectionModel().getSelectedItem();
       controller.initData(selectedEmployee);
+   }
+
+   @FXML
+   private void deleteButtonDidTap (ActionEvent event) throws IOException
+   {
+      showAlert();
+   }
+
+   @FXML
+   private void editButtonDidTap (ActionEvent event) throws IOException
+   {
+      showAlert();
+   }
+
+   @FXML
+   private void taxButtonDidTap (ActionEvent event) throws IOException
+   {
+      showAlert();
+   }
+
+   private void showAlert ()
+   {
+      Alert alert = new Alert(Alert.AlertType.INFORMATION);
+      alert.setTitle("Edit / Delete / Tax Functions");
+      alert.setHeaderText("It does not support now.");
+      alert.setContentText("It will be updated...");
+
+      alert.showAndWait();
    }
 }

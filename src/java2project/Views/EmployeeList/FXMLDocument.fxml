@@ -26,5 +26,8 @@
                 <Font size="30.0" />
             </font>
         </Label>
+      <Button layoutX="752.0" layoutY="70.0" mnemonicParsing="false" onAction="#deleteButtonDidTap" text="Delete" />
+      <Button layoutX="695.0" layoutY="70.0" mnemonicParsing="false" onAction="#editButtonDidTap" text="Edit" />
+      <Button layoutX="640.0" layoutY="70.0" mnemonicParsing="false" onAction="#taxButtonDidTap" text="Tax" />
     </children>
 </AnchorPane>
