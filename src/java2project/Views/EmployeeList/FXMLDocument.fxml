@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="800.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="java2project.Views.EmployeeList.FXMLDocumentController">
+<AnchorPane id="AnchorPane" prefHeight="800.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="java2project.Views.EmployeeList.FXMLDocumentController">
     <children>
         <TableView fx:id="employeeTable" layoutX="23.0" layoutY="111.0" prefHeight="633.0" prefWidth="1049.0">
             <columns>
@@ -30,7 +30,8 @@
       <Button layoutX="774.0" layoutY="70.0" mnemonicParsing="false" onAction="#deleteButtonDidTap" text="Delete" />
       <Button layoutX="715.0" layoutY="70.0" mnemonicParsing="false" onAction="#editButtonDidTap" text="Edit" />
       <Button fx:id="taxButton" layoutX="658.0" layoutY="70.0" mnemonicParsing="false" onAction="#taxButtonDidTap" text="Tax" />
-      <TextField fx:id="searchTextField" layoutX="81.0" layoutY="70.0" />
-      <Button fx:id="searchButton" layoutX="230.0" layoutY="70.0" mnemonicParsing="false" onAction="#searchButtonPushed" text="Search :" />
+      <TextField fx:id="searchTextField" layoutX="91.0" layoutY="70.0" prefHeight="27.0" prefWidth="157.0" />
+      <Button fx:id="searchButton" layoutX="250.0" layoutY="70.0" mnemonicParsing="false" onAction="#searchButtonPushed" text="Search :" />
+      <Button layoutX="20.0" layoutY="70.0" mnemonicParsing="false" onAction="#refreshButtonDidTap" text="Refresh" />
     </children>
 </AnchorPane>

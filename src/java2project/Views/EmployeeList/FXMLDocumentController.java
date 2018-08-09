@@ -338,4 +338,22 @@ public class FXMLDocumentController implements Initializable
 
       alert.showAndWait();
    }
+
+   @FXML
+   private void refreshButtonDidTap (ActionEvent event) throws IOException
+   {
+      String loc = "java2project/Views/EmployeeList/FXMLDocument.fxml";
+
+      //Creating new Loader to get Controller first
+      FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource(loc));
+
+      // get the root
+      Parent root = fxmlLoader.load();
+
+      Scene scene = new Scene(root);
+      Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+      stage.setTitle("Employee List");
+      stage.setScene(scene);
+      stage.show();
+   }
 }
