@@ -365,7 +365,7 @@ public class Employee extends FXMLDocumentController
    @Override
    public String toString ()
    {
-      return (String.format("%d,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%f,%s,%s,",
+      return (String.format("%d,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%f,%s,%s",
                             employeeNumber, firstName, lastName, birthday, streetAddress, city,
                             province, phoneNumber, emailAddress, emergencyContact, sinNumber,
                             position, payRate, department, dateHired));

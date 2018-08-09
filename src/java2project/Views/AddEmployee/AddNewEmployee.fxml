@@ -9,14 +9,14 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="800.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="java2project.Views.AddEmployee.AddNewEmployeeController">
+<AnchorPane id="AnchorPane" prefHeight="800.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="java2project.Views.AddEmployee.AddNewEmployeeController">
     <children>
         <Button mnemonicParsing="false" onAction="#backButtonDidTap" text="BACK" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="70.0">
             <font>
                 <Font size="20.0" />
             </font>
         </Button>
-        <Label fx:id="titleLabel" alignment="CENTER" text="Add New Employee" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="40.0">
+        <Label alignment="CENTER" text="Add New Employee" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="40.0">
             <font>
                 <Font size="30.0" />
             </font>

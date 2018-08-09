@@ -29,7 +29,6 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -253,17 +252,19 @@ public class FXMLDocumentController implements Initializable
    @FXML
    private void deleteButtonDidTap (ActionEvent event) throws IOException, Exception
    {
-      ObservableList<Employee> selectedRows, visibleRecords;
+      ObservableList<Employee> visibleRecords;
+      Employee selectedEmployee;
       visibleRecords = employeeTable.getItems();
 
-      selectedRows = employeeTable.getSelectionModel().getSelectedItems();
+      selectedEmployee = employeeTable.getSelectionModel().getSelectedItem();
+      System.out.println(selectedEmployee);
+      boolean removed = visibleRecords.remove(selectedEmployee);
 
-      for (Employee selected : selectedRows) {
-         visibleRecords.remove(selected);
-         employeesArrayList.remove(selected);
-         JOptionPane.showMessageDialog(null, "Deleted!!");
+      if (removed) {
+         employeesArrayList.remove(selectedEmployee);
+         showDeleteAlert(selectedEmployee);
+         updateTextFile();
       }
-      updateTextFile();
    }
 
    @FXML
@@ -333,6 +334,14 @@ public class FXMLDocumentController implements Initializable
       alert.setHeaderText("It does not support now.");
       alert.setContentText("It will be updated...");
 
+      alert.showAndWait();
+   }
+
+   private void showDeleteAlert (Employee employee)
+   {
+      Alert alert = new Alert(Alert.AlertType.INFORMATION);
+      alert.setTitle("Delete Employee Success");
+      alert.setHeaderText(employee.getFirstName() + " " + employee.getLastName() + " was deleted.");
       alert.showAndWait();
    }
 
