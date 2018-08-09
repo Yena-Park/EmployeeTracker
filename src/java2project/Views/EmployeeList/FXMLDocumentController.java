@@ -216,7 +216,6 @@ public class FXMLDocumentController implements Initializable
       //assign stage to the controller
       AddNewEmployeeController controller = fxmlLoader.getController(); // first get controller
 
-//      controller.
       // show modal window
       stage.show();
    }

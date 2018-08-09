@@ -78,8 +78,6 @@ public class AddNewEmployeeController implements Initializable
    private DatePicker terminatedDatePicker;
    @FXML
    private TextField availabilityTextField;
-   @FXML
-   private TextField titleLabel;
 
    private String selectedDepartment = "";
    // for editting

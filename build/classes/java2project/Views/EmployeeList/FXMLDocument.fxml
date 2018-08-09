@@ -30,7 +30,7 @@
       <Button layoutX="774.0" layoutY="70.0" mnemonicParsing="false" onAction="#deleteButtonDidTap" text="Delete" />
       <Button layoutX="715.0" layoutY="70.0" mnemonicParsing="false" onAction="#editButtonDidTap" text="Edit" />
       <Button fx:id="taxButton" layoutX="658.0" layoutY="70.0" mnemonicParsing="false" onAction="#taxButtonDidTap" text="Tax" />
-      <TextField fx:id="searchTextField" layoutX="91.0" layoutY="70.0" prefHeight="27.0" prefWidth="157.0" />
+      <TextField fx:id="searchTextField" layoutX="91.0" layoutY="70.0" prefHeight="27.0" prefWidth="157.0" promptText="Search First Name" />
       <Button fx:id="searchButton" layoutX="250.0" layoutY="70.0" mnemonicParsing="false" onAction="#searchButtonPushed" text="Search :" />
       <Button layoutX="20.0" layoutY="70.0" mnemonicParsing="false" onAction="#refreshButtonDidTap" text="Refresh" />
     </children>
