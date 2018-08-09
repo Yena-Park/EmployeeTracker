@@ -40,6 +40,8 @@ public class FXMLDocumentController implements Initializable
 
    ArrayList<Employee> employeesArrayList = new ArrayList<Employee>();
    ObservableList<Employee> employeesObservableList = FXCollections.observableArrayList();
+   ArrayList<Employee> results = new ArrayList<>();
+
 
    // this ListView is currently disable
    @FXML
@@ -148,19 +150,15 @@ public class FXMLDocumentController implements Initializable
       pw.close();
    }
 
-
-   ArrayList<Employee> results = new ArrayList<>();
-
    // search Button 
    @FXML
    private void searchButtonPushed ()
    {
-      results.clear();
-      employeeTable.setItems(FXCollections.observableList(results));
-
       String keyword = searchTextField.getText().trim();
-
       if (!keyword.isEmpty()) {
+         results.clear();
+         employeeTable.setItems(FXCollections.observableList(results));
+
          for (int i = 0; i < employeesArrayList.size(); i++) {
             if (employeesArrayList.get(i).checkFirstName(keyword)) {
                results.add(employeesArrayList.get(i));
