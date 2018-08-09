@@ -7,11 +7,18 @@ package java2project.Views.AddEmployee;
 
 
 import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.io.Writer;
 import java.net.URL;
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java2project.Models.Employee;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -25,6 +32,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -43,7 +51,7 @@ public class AddNewEmployeeController implements Initializable
    @FXML
    private TextField employeeNumberTextField;
    @FXML
-   private TextField birthDateTextField;
+   private DatePicker birthDatePicker;
    @FXML
    private TextField streetTextField;
    @FXML
@@ -65,23 +73,27 @@ public class AddNewEmployeeController implements Initializable
    @FXML
    private ComboBox departmentComboBox;
    @FXML
-   private TextField hiredDateTextField;
+   private DatePicker hiredDatePicker;
    @FXML
-   private TextField terminatedTextField;
+   private DatePicker terminatedDatePicker;
    @FXML
    private TextField availabilityTextField;
+   @FXML
+   private TextField titleLabel;
 
-   private String selectedDerpartment = "";
+   private String selectedDepartment = "";
+   // for editting
+   private ArrayList<Employee> arrayList = new ArrayList();
+   private int index;
+   private boolean editing;
 
-   /**
-    * Initializes the controller class.
-    */
    @Override
    public void initialize (URL url, ResourceBundle rb)
    {
-      // TODO:
       setupUI();
+      this.editing = false;
    }
+
 
    private void setupUI ()
    {
@@ -117,9 +129,75 @@ public class AddNewEmployeeController implements Initializable
          public void changed (ObservableValue ov, String t, String t1)
          {
             System.out.println(t1);
-            selectedDerpartment = departmentComboBox.getSelectionModel().getSelectedItem().toString();
+            selectedDepartment = departmentComboBox.getSelectionModel().getSelectedItem().toString();
          }
       });
+   }
+
+   private void updateFile ()
+   {
+      File file = new File("employees.txt");
+      PrintWriter pw;
+      try {
+         pw = new PrintWriter(file);
+         for (int i = 0; i < arrayList.size(); i++) {
+            String line = arrayList.get(i).toString();
+            pw.println(line);
+         }
+         pw.close();
+      }
+      catch (FileNotFoundException ex) {
+         Logger.getLogger(AddNewEmployeeController.class.getName()).log(Level.SEVERE, null, ex);
+      }
+   }
+
+
+   public void populator (int index, ArrayList<Employee> arrayList)
+   {
+//      titleLabel.setText(Edit Employee);
+      Employee employee = arrayList.get(index);
+      try {
+         System.out.println("test1");
+         System.out.println(employee);
+         System.out.println("test2");
+      }
+      catch (Exception ex) {
+         System.out.println("ERRR");
+      }
+      firstNameTextField.setText(employee.getFirstName());
+      lastNameTextField.setText(employee.getLastName());
+      employeeNumberTextField.setText(employee.getEmployeeNumber() + "");
+      birthDatePicker.setValue(LocalDate.parse(employee.getBirthday()));
+      streetTextField.setText(employee.getStreetAddress());
+      cityTextField.setText(employee.getCity());
+      provinceTextField.setText(employee.getProvince());
+      phoneNumberTextField.setText(employee.getPhoneNumber());
+      emailTextField.setText(employee.getEmailAddress());
+      emergencyContactTextField.setText(employee.getEmergencyContact());
+      sinNumberTextField.setText(employee.getSinNumber());
+      positionComboBox.setValue(employee.getPosition());
+      payRateTextField.setText(employee.getPayRate() + "");
+      departmentComboBox.setValue(employee.getDepartment());
+      hiredDatePicker.setValue(LocalDate.parse(employee.getDateHired()));
+
+      try {
+         terminatedDatePicker.setValue(LocalDate.parse(employee.getDateTerminated()));
+      }
+      catch (Exception ignore) {
+
+      }
+
+      try {
+         availabilityTextField.setText(employee.getAvailability());
+      }
+      catch (Exception ignore2) {
+
+      }
+
+
+      this.arrayList = arrayList;
+      this.index = index;
+      this.editing = true;
    }
 
    @FXML
@@ -143,8 +221,43 @@ public class AddNewEmployeeController implements Initializable
    @FXML
    private void saveButtonDidTap (ActionEvent event) throws IOException
    {
+
       if (checkValidation()) {
-         saveNewEmployee();
+         if (editing) {
+            arrayList.get(index).setFirstName(firstNameTextField.getText());
+            arrayList.get(index).setLastName(lastNameTextField.getText());
+            arrayList.get(index).setBirthday(birthDatePicker.getValue().toString());
+            arrayList.get(index).setStreetAddress(streetTextField.getText());
+            arrayList.get(index).setCity(cityTextField.getText());
+            arrayList.get(index).setProvince(provinceTextField.getText());
+            arrayList.get(index).setPhoneNumber(phoneNumberTextField.getText());
+            arrayList.get(index).setEmailAddress(emailTextField.getText());
+            arrayList.get(index).setEmergencyContact(emergencyContactTextField.getText());
+            arrayList.get(index).setSinNumber(sinNumberTextField.getText());
+            arrayList.get(index).setPosition(positionComboBox.getValue().toString());
+            arrayList.get(index).setDepartment(departmentComboBox.getValue().toString());
+            arrayList.get(index).setDateHired(hiredDatePicker.getValue().toString());
+            arrayList.get(index).setPayRate(Double.parseDouble(payRateTextField.getText()));
+            arrayList.get(index).setEmployeeNumber(Integer.parseInt(employeeNumberTextField.getText()));
+            try {
+               arrayList.get(index).setDateTerminated(terminatedDatePicker.getValue().toString());
+            }
+            catch (Exception ignore) {
+
+            }
+            try {
+               arrayList.get(index).setAvailability(availabilityTextField.getText());
+            }
+            catch (Exception ignore) {
+
+            }
+            updateFile();
+            editing = false;
+         }
+         else {
+//            updateFile();
+            saveNewEmployee();
+         }
 
          // go to main
          String loc = "java2project/Views/EmployeeList/FXMLDocument.fxml";
@@ -172,7 +285,7 @@ public class AddNewEmployeeController implements Initializable
       return employeeNumberTextField.getText().length() > 0
               && lastNameTextField.getText().length() > 0
               && firstNameTextField.getText().length() > 0
-              && birthDateTextField.getText().length() > 0
+              && birthDatePicker.getValue() != null
               && streetTextField.getText().length() > 0
               && cityTextField.getText().length() > 0
               && provinceTextField.getText().length() > 0
@@ -183,7 +296,7 @@ public class AddNewEmployeeController implements Initializable
               && positionComboBox.getSelectionModel().getSelectedItem() != null
               && payRateTextField.getText().length() > 0
               && departmentComboBox.getSelectionModel().getSelectedItem() != null
-              && hiredDateTextField.getText().length() > 0;
+              && hiredDatePicker.getValue() != null;
    }
 
    public void saveNewEmployee ()
@@ -193,7 +306,7 @@ public class AddNewEmployeeController implements Initializable
       newEmployee.setEmployeeNumber(Integer.parseInt(employeeNumberTextField.getText()));
       newEmployee.setLastName(lastNameTextField.getText());
       newEmployee.setFirstName(firstNameTextField.getText());
-      newEmployee.setBirthday(birthDateTextField.getText());
+      newEmployee.setBirthday(birthDatePicker.getValue().toString());
       newEmployee.setStreetAddress(streetTextField.getText());
       newEmployee.setCity(cityTextField.getText());
       newEmployee.setProvince(provinceTextField.getText());
@@ -204,7 +317,7 @@ public class AddNewEmployeeController implements Initializable
       newEmployee.setPosition(positionComboBox.getSelectionModel().getSelectedItem().toString());
       newEmployee.setPayRate(Double.parseDouble(payRateTextField.getText()));
       newEmployee.setDepartment(departmentComboBox.getSelectionModel().getSelectedItem().toString());
-      newEmployee.setDateHired(hiredDateTextField.getText());
+      newEmployee.setDateHired(hiredDatePicker.getValue().toString());
 
       Writer output;
       try {
@@ -236,7 +349,7 @@ public class AddNewEmployeeController implements Initializable
          output.append("" + newEmployee.getPayRate());
          output.append(",");
          // bug??
-         output.append(selectedDerpartment);
+         output.append(newEmployee.getDepartment());
          output.append(",");
          output.append(newEmployee.getDateHired());
          output.append("\n");
@@ -249,7 +362,9 @@ public class AddNewEmployeeController implements Initializable
    // Show a Information Alert with header Text
    private void showAlertWithHeaderText ()
    {
+
       Alert alert = new Alert(AlertType.INFORMATION);
+
       alert.setTitle("Add New Employee");
       alert.setHeaderText("Enter Information");
       alert.setContentText("Please enter all inputs.");

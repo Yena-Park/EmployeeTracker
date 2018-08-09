@@ -23,7 +23,7 @@ public class Employee extends FXMLDocumentController
    private String emergencyContact;
    private String sinNumber;
    private String position;
-   private double payRate;
+   protected double payRate;
    private String department;
    private String dateHired;
    private String dateTerminated;
@@ -109,6 +109,36 @@ public class Employee extends FXMLDocumentController
 //      bankInstitutionNumber = ip.nextInt();
 //      bankAccountNumber = ip.nextInt();
       ip.close();
+   }
+
+   public void searchEmployee (String employeeDetail, String searchSentence)
+   {
+      Scanner ip = new Scanner(employeeDetail);
+      ip.useDelimiter(",");
+      if (firstName == searchSentence || lastName == searchSentence) {
+         employeeNumber = ip.nextInt();
+         firstName = ip.next();
+         lastName = ip.next();
+         birthday = ip.next();
+         streetAddress = ip.next();
+         city = ip.next();
+         province = ip.next();
+         phoneNumber = ip.next();
+         emailAddress = ip.next();
+         emergencyContact = ip.next();
+         sinNumber = ip.next();
+         position = ip.next();
+         payRate = ip.nextDouble();
+         department = ip.next();
+         dateHired = ip.next();
+//      dateTerminated = ip.next();
+//      availability = ip.next();
+//      bankName = ip.next();
+//      bankTransitNumber = ip.nextInt();
+//      bankInstitutionNumber = ip.nextInt();
+//      bankAccountNumber = ip.nextInt();
+         ip.close();
+      }
    }
 
    public String getEmployeeBasicInfo ()
@@ -325,5 +355,19 @@ public class Employee extends FXMLDocumentController
    public void setBankAccountNumber (int bankAccountNumber)
    {
       this.bankAccountNumber = bankAccountNumber;
+   }
+
+   public boolean checkFirstName (String firstName)
+   {
+      return this.firstName.toLowerCase().contains(firstName.toLowerCase());
+   }
+
+   @Override
+   public String toString ()
+   {
+      return (String.format("%d,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%f,%s,%s,",
+                            employeeNumber, firstName, lastName, birthday, streetAddress, city,
+                            province, phoneNumber, emailAddress, emergencyContact, sinNumber,
+                            position, payRate, department, dateHired));
    }
 }

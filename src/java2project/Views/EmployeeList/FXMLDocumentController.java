@@ -1,12 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package java2project.Views.EmployeeList;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -14,6 +10,8 @@ import java.util.Scanner;
 import java2project.Models.Employee;
 import java2project.Views.AddEmployee.AddNewEmployeeController;
 import java2project.Views.EmployeeDetail.EmployeeDetailController;
+import java2project.Views.SearchEmployee.SearchEmployeeController;
+import java2project.Views.TaxResult.TaxResultController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -28,8 +26,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -38,14 +38,12 @@ import javafx.stage.Stage;
 public class FXMLDocumentController implements Initializable
 {
 
-
-
-   ArrayList<Employee> employees = new ArrayList<Employee>();
-   ObservableList<Employee> employeesList = FXCollections.observableArrayList();
+   ArrayList<Employee> employeesArrayList = new ArrayList<Employee>();
+   ObservableList<Employee> employeesObservableList = FXCollections.observableArrayList();
 
    // this ListView is currently disable
    @FXML
-   private ListView<String> employeeList;
+   private ListView<String> employeeStringList;
    @FXML
    private TableView<Employee> employeeTable;
    @FXML
@@ -64,7 +62,12 @@ public class FXMLDocumentController implements Initializable
    private Button addNewEmployeeButton;
    @FXML
    private Button viewDetailButton;
-
+   @FXML
+   private Button taxButton;
+   @FXML
+   private Button searchButton;
+   @FXML
+   private TextField searchTextField;
 
 
    @Override
@@ -87,25 +90,109 @@ public class FXMLDocumentController implements Initializable
          String sentence = line.next();
          Employee employee = new Employee();
          employee.loadEmployee(sentence);
-         employeesList.add(employee);
-         employeeTable.setItems(employeesList);
+         employeesObservableList.add(employee);
+         employeeTable.setItems(employeesObservableList);
          employeeNumberColumn.setCellValueFactory(new PropertyValueFactory<Employee, Integer>("employeeNumber"));
          lastNameColumn.setCellValueFactory(new PropertyValueFactory<Employee, String>("lastName"));
          firstNameColumn.setCellValueFactory(new PropertyValueFactory<Employee, String>("firstName"));
          departmentColumn.setCellValueFactory(new PropertyValueFactory<Employee, String>("department"));
          emailColumn.setCellValueFactory(new PropertyValueFactory<Employee, String>("emailAddress"));
          payRateColumn.setCellValueFactory(new PropertyValueFactory<Employee, Double>("payRate"));
-         employees.add(employee);
+         employeesArrayList.add(employee);
       }
-
-
       // from this point, for 4 lines are currently disable. these are for ListView
-      for (Employee emp : employees) {
-         employeeList.getItems().add(emp.getEmployeeBasicInfo());
+      for (Employee emp : employeesArrayList) {
+         employeeStringList.getItems().add(emp.getEmployeeBasicInfo());
       }
-      employeeList.setVisible(false);
+      employeeStringList.setVisible(false);
    }
 
+
+   private void searchFile () throws Exception
+   {
+      File file = new File("employees.txt");
+      String searchSentence = searchTextField.getText();
+      Scanner line = new Scanner(file);
+      line.useDelimiter("\n");
+
+      while (line.hasNext()) {
+         String sentence = line.next();
+         Employee employee = new Employee();
+         employee.searchEmployee(sentence, searchSentence);
+         employeesObservableList.add(employee);
+         employeeTable.setItems(employeesObservableList);
+         employeeNumberColumn.setCellValueFactory(new PropertyValueFactory<Employee, Integer>("employeeNumber"));
+         lastNameColumn.setCellValueFactory(new PropertyValueFactory<Employee, String>("lastName"));
+         firstNameColumn.setCellValueFactory(new PropertyValueFactory<Employee, String>("firstName"));
+         departmentColumn.setCellValueFactory(new PropertyValueFactory<Employee, String>("department"));
+         emailColumn.setCellValueFactory(new PropertyValueFactory<Employee, String>("emailAddress"));
+         payRateColumn.setCellValueFactory(new PropertyValueFactory<Employee, Double>("payRate"));
+         employeesArrayList.add(employee);
+      }
+      // from this point, for 4 lines are currently disable. these are for ListView
+      for (Employee emp : employeesArrayList) {
+         employeeStringList.getItems().add(emp.getEmployeeBasicInfo());
+      }
+      employeeStringList.setVisible(false);
+   }
+
+   public void updateTextFile () throws Exception
+   {
+      File file = new File("employees.txt");
+      PrintWriter pw = new PrintWriter(file);
+
+      for (int i = 0; i < employeesArrayList.size(); i++) {
+         String line = employeesArrayList.get(i).toString();
+         pw.println(line);
+      }
+      pw.close();
+   }
+
+
+   ArrayList<Employee> results = new ArrayList<>();
+
+   // search Button 
+   @FXML
+   private void searchButtonPushed ()
+   {
+      results.clear();
+      employeeTable.setItems(FXCollections.observableList(results));
+
+      String keyword = searchTextField.getText().trim();
+
+      if (!keyword.isEmpty()) {
+         for (int i = 0; i < employeesArrayList.size(); i++) {
+            if (employeesArrayList.get(i).checkFirstName(keyword)) {
+               results.add(employeesArrayList.get(i));
+            }
+         }
+         employeeTable.setItems(FXCollections.observableList(results));
+      }
+   }
+
+   @FXML
+   private void searchButtonDidTap (ActionEvent event) throws IOException
+   {
+      String loc = "java2project/Views/SearchEmployee/SearchEmployee.fxml";
+
+      //Creating new Loader to get Controller first
+      FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource(loc));
+
+      // get the root
+      Parent root = fxmlLoader.load();
+
+      Scene scene = new Scene(root);
+
+      // This line gets the stage information
+      Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+      stage.setScene(scene);
+
+      //assign stage to the controller
+      SearchEmployeeController controller = fxmlLoader.getController(); // first get controller
+
+      // show modal window
+      stage.show();
+   }
 
    // This method is called, it will change the scene to a AddNewEmployeePage
    @FXML
@@ -129,9 +216,11 @@ public class FXMLDocumentController implements Initializable
       //assign stage to the controller
       AddNewEmployeeController controller = fxmlLoader.getController(); // first get controller
 
+//      controller.
       // show modal window
       stage.show();
    }
+
 
    @FXML
    private void viewDetailButtonDidTap (ActionEvent event) throws IOException
@@ -163,22 +252,81 @@ public class FXMLDocumentController implements Initializable
       controller.initData(selectedEmployee);
    }
 
+   // To delete the row in the table and update the text file
    @FXML
-   private void deleteButtonDidTap (ActionEvent event) throws IOException
+   private void deleteButtonDidTap (ActionEvent event) throws IOException, Exception
    {
-      showAlert();
+      ObservableList<Employee> selectedRows, visibleRecords;
+      visibleRecords = employeeTable.getItems();
+
+      selectedRows = employeeTable.getSelectionModel().getSelectedItems();
+
+      for (Employee selected : selectedRows) {
+         visibleRecords.remove(selected);
+         employeesArrayList.remove(selected);
+         JOptionPane.showMessageDialog(null, "Deleted!!");
+      }
+      updateTextFile();
    }
 
    @FXML
    private void editButtonDidTap (ActionEvent event) throws IOException
    {
-      showAlert();
+      String loc = "java2project/Views/AddEmployee/AddNewEmployee.fxml";
+
+      //Creating new Loader to get Controller first
+      FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource(loc));
+
+      // get the root
+      Parent root = fxmlLoader.load();
+
+
+
+      ObservableList<Employee> selectedRows;
+      selectedRows = employeeTable.getSelectionModel().getSelectedItems();
+
+      Scene scene = new Scene(root);
+
+      // This line gets the stage information
+      Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+      stage.setScene(scene);
+
+      //assign stage to the controller
+      AddNewEmployeeController controller = fxmlLoader.getController(); // first get controller
+
+      controller.populator(employeesArrayList.indexOf(employeeTable.focusModelProperty().getValue().getFocusedItem()), employeesArrayList);
+
+
+      // show modal window
+      stage.show();
+
+
+
+
    }
 
    @FXML
    private void taxButtonDidTap (ActionEvent event) throws IOException
    {
-      showAlert();
+      String loc = "java2project/Views/TaxResult/TaxResult.fxml";
+
+      //Creating new Loader to get Controller first
+      FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource(loc));
+
+      // get the root
+      Parent root = fxmlLoader.load();
+
+      Scene scene = new Scene(root);
+
+      // This line gets the stage information
+      Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+      stage.setScene(scene);
+
+      //assign stage to the controller
+      TaxResultController controller = fxmlLoader.getController(); // first get controller
+
+      // show modal window
+      stage.show();
    }
 
    private void showAlert ()

@@ -31,7 +31,6 @@ public class EmployeeDetailController implements Initializable
    // UI
    @FXML
    private Button backButton;
-
    @FXML
    private Label titleLabel;
    @FXML

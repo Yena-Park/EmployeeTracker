@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="800.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="java2project.Views.EmployeeDetail.EmployeeDetailController">
+<AnchorPane id="AnchorPane" prefHeight="800.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="java2project.Views.EmployeeDetail.EmployeeDetailController">
     <children>
         <Button fx:id="backButton" layoutX="52.0" layoutY="29.0" mnemonicParsing="false" onAction="#backButtonDidTap" text="BACK">
             <font>
@@ -139,7 +139,7 @@
                         <Font size="16.0" />
                     </font>
                 </Label>
-                <Label layoutX="48.0" layoutY="190.0" text="email :">
+                <Label layoutX="48.0" layoutY="190.0" text="Email :">
                     <font>
                         <Font size="16.0" />
                     </font>

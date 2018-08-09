@@ -1,11 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="java2project.Views.TaxResult.TaxResultController">
-    
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="java2project.Views.TaxResult.TaxResultController">
+    <children>
+        <Label layoutX="221.0" layoutY="14.0" text="Tax Records">
+            <font>
+                <Font size="30.0" />
+            </font>
+        </Label>
+      <Button fx:id="backButton" layoutX="14.0" layoutY="59.0" mnemonicParsing="false" onAction="#backButtonDidTap" text="BACK">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Button>
+      <TableView fx:id="taxTable" layoutX="20.0" layoutY="135.0" prefHeight="200.0" prefWidth="560.0">
+        <columns>
+          <TableColumn fx:id="employeeNumberColumn" prefWidth="75.0" text="Employee#" />
+          <TableColumn fx:id="employeeGrossPayColumn" prefWidth="75.0" text="Gross Pay" />
+            <TableColumn fx:id="employeeCPPColumn" prefWidth="75.0" text="CPP" />
+            <TableColumn fx:id="employeeEIColumn" prefWidth="75.0" text="EI" />
+            <TableColumn fx:id="employeeIncomeTaxColumn" prefWidth="75.0" text="Income Tax" />
+            <TableColumn fx:id="employeeTotalDeductionsColumn" prefWidth="75.0" text="Total Deductions" />
+            <TableColumn fx:id="employeeNetPayColumn" prefWidth="75.0" text="Net Pay" />
+        </columns>
+      </TableView>
+        <!--<Button fx:id="backButton" layoutX="327.0" layoutY="175.0" mnemonicParsing="false" onAction="#backButtonDidTap" text="Back" />-->
+    </children>
 </AnchorPane>

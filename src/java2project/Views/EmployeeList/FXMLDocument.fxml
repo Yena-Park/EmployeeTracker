@@ -4,10 +4,11 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="800.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="java2project.Views.EmployeeList.FXMLDocumentController">
+<AnchorPane id="AnchorPane" prefHeight="800.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="java2project.Views.EmployeeList.FXMLDocumentController">
     <children>
         <TableView fx:id="employeeTable" layoutX="23.0" layoutY="111.0" prefHeight="633.0" prefWidth="1049.0">
             <columns>
@@ -15,19 +16,21 @@
                 <TableColumn fx:id="lastNameColumn" prefWidth="110.89126586914062" text="Last Name" />
                 <TableColumn fx:id="firstNameColumn" prefWidth="106.6087646484375" text="First Name" />
                 <TableColumn fx:id="departmentColumn" prefWidth="210.83078002929688" text="Department" />
-                <TableColumn fx:id="emailColumn" prefWidth="353.5739440917969" text="email" />
+                <TableColumn fx:id="emailColumn" prefWidth="353.5739440917969" text="Email" />
                 <TableColumn fx:id="payRateColumn" prefWidth="148.06939697265625" text="Pay Rate" />
             </columns>
         </TableView>
-        <Button fx:id="viewDetailButton" layoutX="822.0" layoutY="70.0" mnemonicParsing="false" onAction="#viewDetailButtonDidTap" text="View Details" />
-        <Button fx:id="addNewEmployeeButton" layoutX="930.0" layoutY="70.0" mnemonicParsing="false" onAction="#addNewEmployeeButtonDidTap" text="Add New Employee" />
+        <Button fx:id="viewDetailButton" layoutX="846.0" layoutY="70.0" mnemonicParsing="false" onAction="#viewDetailButtonDidTap" text="View Details" />
+        <Button fx:id="addNewEmployeeButton" layoutX="951.0" layoutY="70.0" mnemonicParsing="false" onAction="#addNewEmployeeButtonDidTap" text="Add New Employee" />
         <Label alignment="CENTER" contentDisplay="CENTER" layoutX="28.0" layoutY="24.0" prefHeight="37.0" prefWidth="1042.0" text="Employee List" textAlignment="CENTER">
             <font>
                 <Font size="30.0" />
             </font>
         </Label>
-      <Button layoutX="752.0" layoutY="70.0" mnemonicParsing="false" onAction="#deleteButtonDidTap" text="Delete" />
-      <Button layoutX="695.0" layoutY="70.0" mnemonicParsing="false" onAction="#editButtonDidTap" text="Edit" />
-      <Button layoutX="640.0" layoutY="70.0" mnemonicParsing="false" onAction="#taxButtonDidTap" text="Tax" />
+      <Button layoutX="774.0" layoutY="70.0" mnemonicParsing="false" onAction="#deleteButtonDidTap" text="Delete" />
+      <Button layoutX="715.0" layoutY="70.0" mnemonicParsing="false" onAction="#editButtonDidTap" text="Edit" />
+      <Button fx:id="taxButton" layoutX="658.0" layoutY="70.0" mnemonicParsing="false" onAction="#taxButtonDidTap" text="Tax" />
+      <TextField fx:id="searchTextField" layoutX="81.0" layoutY="70.0" />
+      <Button fx:id="searchButton" layoutX="230.0" layoutY="70.0" mnemonicParsing="false" onAction="#searchButtonPushed" text="Search :" />
     </children>
 </AnchorPane>
