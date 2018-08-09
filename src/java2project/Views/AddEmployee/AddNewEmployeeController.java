@@ -33,6 +33,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -78,6 +79,8 @@ public class AddNewEmployeeController implements Initializable
    private DatePicker terminatedDatePicker;
    @FXML
    private TextField availabilityTextField;
+   @FXML
+   private Label titleLabel;
 
    private String selectedDepartment = "";
    // for editting
@@ -127,7 +130,9 @@ public class AddNewEmployeeController implements Initializable
          public void changed (ObservableValue ov, String t, String t1)
          {
             System.out.println(t1);
+            System.out.println(selectedDepartment);
             selectedDepartment = departmentComboBox.getSelectionModel().getSelectedItem().toString();
+            System.out.println(selectedDepartment);
          }
       });
    }
@@ -152,7 +157,7 @@ public class AddNewEmployeeController implements Initializable
 
    public void populator (int index, ArrayList<Employee> arrayList)
    {
-//      titleLabel.setText(Edit Employee);
+      titleLabel.setText("Edit Employee");
       Employee employee = arrayList.get(index);
       try {
          System.out.println("test1");
@@ -176,6 +181,7 @@ public class AddNewEmployeeController implements Initializable
       positionComboBox.setValue(employee.getPosition());
       payRateTextField.setText(employee.getPayRate() + "");
       departmentComboBox.setValue(employee.getDepartment());
+      selectedDepartment = employee.getDepartment();
       hiredDatePicker.setValue(LocalDate.parse(employee.getDateHired()));
 
       try {
@@ -219,7 +225,8 @@ public class AddNewEmployeeController implements Initializable
    @FXML
    private void saveButtonDidTap (ActionEvent event) throws IOException
    {
-
+      System.out.println("@@@");
+      System.out.println(index);
       if (checkValidation()) {
          if (editing) {
             arrayList.get(index).setFirstName(firstNameTextField.getText());
@@ -233,7 +240,8 @@ public class AddNewEmployeeController implements Initializable
             arrayList.get(index).setEmergencyContact(emergencyContactTextField.getText());
             arrayList.get(index).setSinNumber(sinNumberTextField.getText());
             arrayList.get(index).setPosition(positionComboBox.getValue().toString());
-            arrayList.get(index).setDepartment(departmentComboBox.getValue().toString());
+            arrayList.get(index).setDepartment(selectedDepartment);
+            System.out.println(arrayList.get(index).getDepartment());
             arrayList.get(index).setDateHired(hiredDatePicker.getValue().toString());
             arrayList.get(index).setPayRate(Double.parseDouble(payRateTextField.getText()));
             arrayList.get(index).setEmployeeNumber(Integer.parseInt(employeeNumberTextField.getText()));
@@ -253,7 +261,6 @@ public class AddNewEmployeeController implements Initializable
             editing = false;
          }
          else {
-//            updateFile();
             saveNewEmployee();
          }
 
@@ -314,7 +321,7 @@ public class AddNewEmployeeController implements Initializable
       newEmployee.setSinNumber(sinNumberTextField.getText());
       newEmployee.setPosition(positionComboBox.getSelectionModel().getSelectedItem().toString());
       newEmployee.setPayRate(Double.parseDouble(payRateTextField.getText()));
-      newEmployee.setDepartment(departmentComboBox.getSelectionModel().getSelectedItem().toString());
+      newEmployee.setDepartment(selectedDepartment);
       newEmployee.setDateHired(hiredDatePicker.getValue().toString());
 
       Writer output;
@@ -347,7 +354,7 @@ public class AddNewEmployeeController implements Initializable
          output.append("" + newEmployee.getPayRate());
          output.append(",");
          // bug??
-         output.append(newEmployee.getDepartment());
+         output.append(selectedDepartment);
          output.append(",");
          output.append(newEmployee.getDateHired());
          output.append("\n");

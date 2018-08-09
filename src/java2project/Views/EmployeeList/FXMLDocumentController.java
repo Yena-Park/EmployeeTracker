@@ -278,8 +278,6 @@ public class FXMLDocumentController implements Initializable
       // get the root
       Parent root = fxmlLoader.load();
 
-
-
       ObservableList<Employee> selectedRows;
       selectedRows = employeeTable.getSelectionModel().getSelectedItems();
 
@@ -293,6 +291,7 @@ public class FXMLDocumentController implements Initializable
       AddNewEmployeeController controller = fxmlLoader.getController(); // first get controller
 
       controller.populator(employeesArrayList.indexOf(employeeTable.focusModelProperty().getValue().getFocusedItem()), employeesArrayList);
+//      controller.populator(employeeTable.focusModelProperty().getValue().getFocusedCell().getRow(), employeesArrayList);
 
 
       // show modal window
